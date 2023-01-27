@@ -49,13 +49,10 @@ function App() {
     const button1Ref = useRef(null);
     const button2Ref = useRef(null);
     const left2doRef = useRef(null);
-    
-
-    //Todo animations below
-    const [todoAnimations, setTodoAnimations] = useState({});
+    const todoRef = useRef(null);
 
     useEffect(() => {
-        const elementsToAnimate = gsap.utils.toArray([h1Ref.current, inputRef.current, button1Ref.current, button2Ref.current, left2doRef.current])
+        const elementsToAnimate = gsap.utils.toArray([h1Ref.current, inputRef.current, button1Ref.current, button2Ref.current, left2doRef.current, todoRef.current])
         gsap.fromTo(elementsToAnimate, { duration: 2.5, opacity: 0, y: 50, ease: 'expo'}, {opacity: 1, y: 0, stagger: 0.1})
 }, []);
 
@@ -71,7 +68,9 @@ function App() {
                 <button ref={button2Ref} className="btn justify-evenly" onClick={handleClearTodos}>Clear Finished</button>
             </div>
             <div ref={left2doRef}> {todos.filter(todo => !todo.complete).length} left to do</div>
-            <TodoList todos={todos} toggleTodo={toggleTodo}/>
+            <div ref={todoRef}>
+                <TodoList todos={todos} toggleTodo={toggleTodo}/>
+            </div>
             <svg className="wave"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#5000ca" fill-opacity="1" d="M0,160L48,154.7C96,149,192,139,288,149.3C384,160,480,192,576,192C672,192,768,160,864,149.3C960,139,1056,149,1152,165.3C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
         </div>
     )

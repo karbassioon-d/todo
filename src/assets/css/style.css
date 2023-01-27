@@ -263,5 +263,5 @@ display: flex;
 .wave {
   bottom: 0;
   position: fixed;
-  z-index: 0;
+  z-index: -1;
 }
